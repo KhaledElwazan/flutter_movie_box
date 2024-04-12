@@ -96,6 +96,12 @@ class MovieDetailsPage extends StatelessWidget {
                                       AddFavoriteMovieEvent(
                                           movie: movieDetails),
                                     );
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Added to favorites'),
+                                      ),
+                                    );
                                   },
                                 ),
                               ),
