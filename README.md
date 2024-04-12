@@ -12,12 +12,12 @@ A Flutter project that displays a list of movies from the [The Movie Database (T
 - App theme switcher
 
 ## Architecture and Design Patterns Used
-- Clean Architecture
-- BLoC (Business Logic Component) Pattern
-- Repository Pattern
-- Dependency Injection
-- Singleton Pattern
-- Factory Pattern
+- [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [BLoC (Business Logic Component) Pattern](https://www.flutterclutter.dev/flutter/basics/what-is-the-bloc-pattern/2021/2084/)
+- [Repository Pattern](https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30)
+- [Dependency Injection](https://www.jamesshore.com/v2/blog/2006/dependency-injection-demystified)
+- [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
+- [Factory Pattern](https://refactoring.guru/design-patterns/factory-method)
 
 ## Technologies
 - dartz - Functional programming in Dart
