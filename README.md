@@ -71,3 +71,4 @@ home_screen_dark_mode.png  movie_details.png  upcoming_movies.png
 - [ ] Switch from using the http package to the dio package for network requests
 - [ ] Localize the app in multiple languages
 - [ ] Switching between multiple themes
+- [ ] Responsive design for different screen sizes 
