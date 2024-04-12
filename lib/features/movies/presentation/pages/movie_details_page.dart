@@ -16,7 +16,6 @@ class MovieDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
         builder: (context, state) {
           if (state is LoadingMovieDetails) {
