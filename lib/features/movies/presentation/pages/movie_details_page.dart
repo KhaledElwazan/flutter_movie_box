@@ -105,7 +105,8 @@ class MovieDetailsPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  movieDetailsWidget(movieDetails: movieDetails),
+                  movieDetailsWidget(
+                      context: context, movieDetails: movieDetails),
                   const SizedBox(height: 50),
                 ],
               ),
@@ -116,7 +117,8 @@ class MovieDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget movieDetailsWidget({required Movie movieDetails}) {
+  Widget movieDetailsWidget(
+      {required BuildContext context, required Movie movieDetails}) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
@@ -125,21 +127,16 @@ class MovieDetailsPage extends StatelessWidget {
         children: [
           Text(
             movieDetails.title,
-            style: const TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(width: 5),
           IntrinsicHeight(
             child: Row(
               children: [
-                Text('${movieDetails.runtime} min',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    )),
+                Text(
+                  '${movieDetails.runtime} min',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
                 const VerticalDivider(
                   color: Colors.white,
                   thickness: 2,
@@ -147,10 +144,7 @@ class MovieDetailsPage extends StatelessWidget {
                 const SizedBox(width: 5),
                 Text(
                   DateFormat.yMMMd().format(movieDetails.releaseDate),
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 const VerticalDivider(
                   color: Colors.white,
@@ -159,10 +153,7 @@ class MovieDetailsPage extends StatelessWidget {
                 const SizedBox(width: 5),
                 Text(
                   movieDetails.originalLanguage,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
             ),
@@ -171,16 +162,13 @@ class MovieDetailsPage extends StatelessWidget {
           const SizedBox(height: 10),
           ratingBar(movieDetails),
           const SizedBox(height: 10),
-          genreWrapper(movieDetails),
+          genreWrapper(context: context, movieDetails: movieDetails),
           const SizedBox(height: 10),
 
           // const SizedBox(height: 10),
           Text(
             movieDetails.overview,
-            style: const TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-            ),
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ],
       ),
@@ -215,7 +203,8 @@ class MovieDetailsPage extends StatelessWidget {
     );
   }
 
-  Wrap genreWrapper(Movie movieDetails) {
+  Wrap genreWrapper(
+      {required BuildContext context, required Movie movieDetails}) {
     return Wrap(
       children: movieDetails.genres
           .map(
@@ -233,9 +222,7 @@ class MovieDetailsPage extends StatelessWidget {
                 ),
                 label: Text(
                   genre.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
             ),
