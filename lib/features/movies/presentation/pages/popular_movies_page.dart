@@ -3,10 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie_box/features/movies/domain/usecases/get_movies.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movies/brief_movie_bloc.dart';
-import 'package:flutter_movie_box/features/movies/presentation/pages/favorite_movies_page.dart';
-import 'package:flutter_movie_box/features/movies/presentation/pages/now_playing_page.dart';
-import 'package:flutter_movie_box/features/movies/presentation/pages/top_rated_page.dart';
-import 'package:flutter_movie_box/features/movies/presentation/pages/upcoming_page.dart';
+import 'package:flutter_movie_box/features/movies/presentation/widgets/app_drawer.dart';
 import 'package:flutter_movie_box/features/movies/presentation/widgets/movie_card.dart';
 import 'package:flutter_movie_box/injection_container.dart';
 
@@ -22,51 +19,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.movie),
-              title: const Text('Upcoming Movies'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed(UpcomingPage.routeName);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.star),
-              title: const Text('Top Rated Movies'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed(TopRatedPage.routeName);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.play_arrow),
-              title: const Text('Now Playing Movies'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed(NowPlayingPage.routeName);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.favorite),
-              title: const Text('Favorite Movies'),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed(FavoriteMoviesPage.routeName);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('Popular Movies'),
         centerTitle: true,
