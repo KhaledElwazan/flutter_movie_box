@@ -16,6 +16,10 @@ class FavoriteMoviesRepositoryImpl extends FavoriteMovieRepository {
     try {
       final List<Movie> favorites =
           await favoriteMoviesLocalDataSource.getFavoriteMovies();
+
+      if (favorites.contains(movie)) {
+        return const Right(unit);
+      }
       favorites.add(movie);
 
       await favoriteMoviesLocalDataSource.addFavoriteMovies(
