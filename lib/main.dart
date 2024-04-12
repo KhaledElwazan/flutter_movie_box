@@ -1,3 +1,5 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -11,6 +13,7 @@ import 'package:flutter_movie_box/features/movies/presentation/pages/popular_mov
 import 'package:flutter_movie_box/features/movies/presentation/pages/top_rated_page.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/upcoming_page.dart';
 import 'package:flutter_movie_box/injection_container.dart';
+import 'package:flutter_movie_box/settings_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -46,16 +49,27 @@ class AppRoot extends StatelessWidget {
                   removeMovieFromFavorites: sl(),
                 )),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: PopularMoviesPage.routeName,
-        routes: {
-          PopularMoviesPage.routeName: (context) => const PopularMoviesPage(),
-          UpcomingPage.routeName: (context) => const UpcomingPage(),
-          TopRatedPage.routeName: (context) => const TopRatedPage(),
-          NowPlayingPage.routeName: (context) => const NowPlayingPage(),
-          FavoriteMoviesPage.routeName: (context) => const FavoriteMoviesPage(),
-        },
+      child: AdaptiveTheme(
+        light: FlexThemeData.light(scheme: FlexScheme.mandyRed),
+        dark: FlexThemeData.dark(scheme: FlexScheme.mandyRed),
+        initial: AdaptiveThemeMode.light,
+        debugShowFloatingThemeButton: true,
+        builder: (theme, darkTheme) => MaterialApp(
+          title: 'Movie Box',
+          theme: theme,
+          darkTheme: darkTheme,
+          debugShowCheckedModeBanner: false,
+          initialRoute: PopularMoviesPage.routeName,
+          routes: {
+            PopularMoviesPage.routeName: (context) => const PopularMoviesPage(),
+            UpcomingPage.routeName: (context) => const UpcomingPage(),
+            TopRatedPage.routeName: (context) => const TopRatedPage(),
+            NowPlayingPage.routeName: (context) => const NowPlayingPage(),
+            FavoriteMoviesPage.routeName: (context) =>
+                const FavoriteMoviesPage(),
+            SettingsPage.routeName: (context) => const SettingsPage(),
+          },
+        ),
       ),
     );
   }
