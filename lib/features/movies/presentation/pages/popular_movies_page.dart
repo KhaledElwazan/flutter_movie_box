@@ -36,6 +36,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               leading: const Icon(Icons.movie),
               title: const Text('Upcoming Movies'),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(UpcomingPage.routeName);
               },
             ),
@@ -43,6 +44,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               leading: const Icon(Icons.star),
               title: const Text('Top Rated Movies'),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(TopRatedPage.routeName);
               },
             ),
@@ -50,6 +52,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               leading: const Icon(Icons.play_arrow),
               title: const Text('Now Playing Movies'),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(NowPlayingPage.routeName);
               },
             ),
@@ -57,6 +60,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               leading: const Icon(Icons.favorite),
               title: const Text('Favorite Movies'),
               onTap: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(FavoriteMoviesPage.routeName);
               },
             ),
