@@ -36,9 +36,16 @@ class _TopRatedPageState extends State<TopRatedPage> {
           child: CircularProgressIndicator(),
         );
       } else if (state is LoadedMovies) {
-        return ListView.builder(
-          itemCount: state.movies.length,
-          itemBuilder: (_, index) => MovieCard(movie: state.movies[index]),
+        return RefreshIndicator(
+          onRefresh: () {
+            BlocProvider.of<MovieBloc>(context)
+                .add(const GetMoviesEvent(category: MovieCategory.topRated));
+            return Future.value();
+          },
+          child: ListView.builder(
+            itemCount: state.movies.length,
+            itemBuilder: (_, index) => MovieCard(movie: state.movies[index]),
+          ),
         );
       } else if (state is ErrorLoadingMovies) {
         return Center(
