@@ -5,6 +5,7 @@ import 'package:flutter_movie_box/features/movies/presentation/pages/popular_mov
 import 'package:flutter_movie_box/features/movies/presentation/pages/top_rated_page.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/upcoming_page.dart';
 import 'package:flutter_movie_box/settings_page.dart';
+import 'package:logging/logging.dart';
 
 class AppDrawer extends StatelessWidget {
   final bool enableNavigation;
@@ -18,6 +19,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Logger logger = Logger('AppDrawer');
     return Drawer(
       child: Column(
         children: [
@@ -34,10 +36,10 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               if (!enableNavigation) {
                 // call the onNavigate function with the index of the tapped item
-                print('Switch to Popular Movies');
+                logger.info('Switch to Popular Movies');
                 onNavigate?.call(0);
               } else {
-                print('Navigating to Popular Movies');
+                logger.info('Navigating to Popular Movies');
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(PopularMoviesPage.routeName);
               }
@@ -49,10 +51,10 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               if (!enableNavigation) {
                 // call the onNavigate function with the index of the tapped item
-                print('Switch to Upcoming Movies');
+                logger.info('Switch to Upcoming Movies');
                 onNavigate?.call(1);
               } else {
-                print('Navigating to Upcoming Movies');
+                logger.info('Navigating to Upcoming Movies');
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(UpcomingPage.routeName);
               }
@@ -64,10 +66,10 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               if (!enableNavigation) {
                 // call the onNavigate function with the index of the tapped item
-                print('Switch to Top Rated Movies');
+                logger.info('Switch to Top Rated Movies');
                 onNavigate?.call(2);
               } else {
-                print('Navigating to Top Rated Movies');
+                logger.info('Navigating to Top Rated Movies');
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(TopRatedPage.routeName);
               }
@@ -79,10 +81,10 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               if (!enableNavigation) {
                 // call the onNavigate function with the index of the tapped item
-                print('Switch to Now Playing Movies');
+                logger.info('Switch to Now Playing Movies');
                 onNavigate?.call(3);
               } else {
-                print('Navigating to Now Playing Movies');
+                logger.info('Navigating to Now Playing Movies');
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(NowPlayingPage.routeName);
               }
@@ -94,10 +96,10 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               if (!enableNavigation) {
                 // call the onNavigate function with the index of the tapped item
-                print('Switch to Favorite Movies');
+                logger.info('Switch to Favorite Movies');
                 onNavigate?.call(4);
               } else {
-                print('Navigating to Favorite Movies');
+                logger.info('Navigating to Favorite Movies');
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(FavoriteMoviesPage.routeName);
               }
@@ -111,6 +113,7 @@ class AppDrawer extends StatelessWidget {
               if (enableNavigation) {
                 Navigator.of(context).pop();
               }
+              logger.info('Navigating to Settings');
               Navigator.of(context).pushNamed(SettingsPage.routeName);
             },
           ),
