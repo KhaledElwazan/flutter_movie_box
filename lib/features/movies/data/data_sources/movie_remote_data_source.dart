@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_movie_box/core/constants/base_urls.dart';
+import 'package:flutter_movie_box/core/envs/env.dart';
 import 'package:flutter_movie_box/core/error/exceptions.dart';
 import 'package:flutter_movie_box/features/movies/data/models/brief_movie_model/brief_movie_model.dart';
 import 'package:flutter_movie_box/features/movies/data/models/movie_model/movie_model.dart';
@@ -21,7 +21,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   Future<List<BriefMovieModel>> getMovies(
       {MovieCategory category = MovieCategory.popular}) async {
     final response = await dio.get(
-      '$BASE_URL/${enum2String(category)}?api_key=$API_KEY',
+      '${Env.baseUrl}/${enum2String(category)}?api_key=${Env.apiKey}',
       options: Options(
         headers: {
           'Content-Type': 'application/json',
@@ -56,10 +56,11 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<MovieModel> getMovieDetails(int movieId) async {
-    final response = await dio.get('$BASE_URL/$movieId?api_key=$API_KEY',
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-        }));
+    final response =
+        await dio.get('${Env.baseUrl}/$movieId?api_key=${Env.apiKey}',
+            options: Options(headers: {
+              'Content-Type': 'application/json',
+            }));
 
     if (response.statusCode == 200) {
       final responseBody = response.data as Map<String, dynamic>;

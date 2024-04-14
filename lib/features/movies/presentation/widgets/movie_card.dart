@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movie_box/core/constants/base_urls.dart';
+import 'package:flutter_movie_box/core/envs/env.dart';
 import 'package:flutter_movie_box/features/movies/domain/entities/brief_movie.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movie_details/movie_details_bloc.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/movie_details_page.dart';
@@ -41,7 +41,7 @@ class MovieCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: CachedNetworkImage(
-                      imageUrl: '$imageBaseUrl/${movie.backdropPath}',
+                      imageUrl: '${Env.imageBaseUrl}/${movie.backdropPath}',
                       fit: BoxFit.cover,
                       placeholder: (context, url) => const SizedBox(
                         width: double.infinity,

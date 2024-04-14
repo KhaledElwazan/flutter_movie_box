@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_movie_box/core/constants/base_urls.dart';
+import 'package:flutter_movie_box/core/envs/env.dart';
 import 'package:flutter_movie_box/features/movies/domain/entities/brief_movie.dart';
 import 'package:flutter_movie_box/features/movies/domain/entities/movie.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/add_remove_favorites/add_remove_favorite_movies_bloc.dart';
@@ -50,7 +50,8 @@ class MovieDetailsPage extends StatelessWidget {
                             },
                             blendMode: BlendMode.dstIn,
                             child: CachedNetworkImage(
-                              imageUrl: '$imageBaseUrl/${movie.posterPath}',
+                              imageUrl:
+                                  '${Env.imageBaseUrl}/${movie.posterPath}',
                               fit: BoxFit.contain,
                               placeholder: (context, url) => const SizedBox(
                                 width: 500,
