@@ -25,6 +25,7 @@ class _FavoriteMoviesPageState extends State<FavoriteMoviesPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorite Movies'),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.delete),
