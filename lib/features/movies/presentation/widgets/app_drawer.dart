@@ -108,7 +108,9 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
             onTap: () {
-              // Navigator.of(context).pop();
+              if (enableNavigation) {
+                Navigator.of(context).pop();
+              }
               Navigator.of(context).pushNamed(SettingsPage.routeName);
             },
           ),
