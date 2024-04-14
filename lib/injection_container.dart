@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_movie_box/core/network/network_info.dart';
 import 'package:flutter_movie_box/features/movies/data/data_sources/favorite_movies_local_data_source.dart';
 import 'package:flutter_movie_box/features/movies/data/data_sources/movie_local_data_source.dart';
@@ -18,7 +19,6 @@ import 'package:flutter_movie_box/features/movies/presentation/blocs/favorites/f
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movie_details/movie_details_bloc.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movies/brief_movie_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -83,7 +83,7 @@ Future<void> init() async {
 
   sl.registerLazySingleton<MovieRemoteDataSource>(
       () => MovieRemoteDataSourceImpl(
-            client: sl(),
+            dio: sl(),
           ));
 
   sl.registerLazySingleton<MovieLocalDataSource>(() => MovieLocalDataSourceImpl(
@@ -101,7 +101,7 @@ Future<void> init() async {
   sl.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(internetConnectionChecker: sl()));
 
-  sl.registerLazySingleton<http.Client>(() => http.Client());
+  sl.registerLazySingleton<Dio>(() => Dio());
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
