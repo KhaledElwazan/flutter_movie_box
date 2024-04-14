@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,18 +9,27 @@ import 'package:flutter_movie_box/features/movies/presentation/blocs/add_remove_
 import 'package:flutter_movie_box/features/movies/presentation/blocs/favorites/favorites_bloc.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movie_details/movie_details_bloc.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/favorite_movies_page.dart';
+import 'package:flutter_movie_box/features/movies/presentation/pages/main_screen.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/now_playing_page.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/popular_movies_page.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/top_rated_page.dart';
 import 'package:flutter_movie_box/features/movies/presentation/pages/upcoming_page.dart';
 import 'package:flutter_movie_box/injection_container.dart';
 import 'package:flutter_movie_box/settings_page.dart';
+import 'package:logging/logging.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await di.init();
+
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    if (kDebugMode) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    }
+  });
 
   runApp(const AppRoot());
 }
@@ -59,7 +69,7 @@ class AppRoot extends StatelessWidget {
           theme: theme,
           darkTheme: darkTheme,
           debugShowCheckedModeBanner: false,
-          initialRoute: PopularMoviesPage.routeName,
+          initialRoute: MainScreen.routeName,
           routes: {
             PopularMoviesPage.routeName: (context) => const PopularMoviesPage(),
             UpcomingPage.routeName: (context) => const UpcomingPage(),
@@ -68,6 +78,8 @@ class AppRoot extends StatelessWidget {
             FavoriteMoviesPage.routeName: (context) =>
                 const FavoriteMoviesPage(),
             SettingsPage.routeName: (context) => const SettingsPage(),
+            // ignore: equal_keys_in_map
+            MainScreen.routeName: (context) => const MainScreen(),
           },
         ),
       ),
