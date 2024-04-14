@@ -73,7 +73,7 @@ home_screen_dark_mode.png  movie_details.png  upcoming_movies.png
 ## TODO:
 - [ ] Add a search bar to search for movies
 - [ ] Switch from using SharedPreferences to Hive/floor for caching and storing movies
-- [ ] Switch from using the http package to the dio package for network requests
+- [x] Switch from using the http package to the dio package for network requests
 - [ ] Localize the app in multiple languages
 - [ ] Switching between multiple themes
 - [x] Responsive design for different screen sizes 
