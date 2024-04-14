@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movie_box/core/responsive/responsive.dart';
 import 'package:flutter_movie_box/features/movies/domain/usecases/get_movies.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movies/brief_movie_bloc.dart';
 import 'package:flutter_movie_box/features/movies/presentation/widgets/app_drawer.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_movie_box/features/movies/presentation/widgets/movie_car
 import 'package:flutter_movie_box/injection_container.dart';
 
 class PopularMoviesPage extends StatefulWidget {
-  static const String routeName = '/';
+  static const String routeName = '/popular-movies';
   const PopularMoviesPage({super.key});
 
   @override
@@ -19,7 +20,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const AppDrawer(),
+      drawer: !Responsive.isMobile(context) ? null : const AppDrawer(),
       appBar: AppBar(
         title: const Text('Popular Movies'),
         centerTitle: true,

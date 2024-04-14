@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movie_box/core/responsive/responsive.dart';
 import 'package:flutter_movie_box/features/movies/domain/usecases/get_movies.dart';
 import 'package:flutter_movie_box/features/movies/presentation/blocs/movies/brief_movie_bloc.dart';
 import 'package:flutter_movie_box/features/movies/presentation/widgets/movie_card.dart';
@@ -18,8 +19,9 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Upcoming Movies'),
+        title: const Text('Now Playing Movies'),
         centerTitle: true,
+        leading: Responsive.isMobile(context) ? const BackButton() : null,
       ),
       body: BlocProvider<MovieBloc>(
         create: (context) => MovieBloc(getMovies: sl())
