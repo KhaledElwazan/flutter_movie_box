@@ -10,6 +10,7 @@ A Flutter project that displays a list of movies from the [The Movie Database (T
 - View favorite movies
 - Caching requests
 - App theme switcher
+- Responsive design for different screen sizes
 
 ## Architecture and Design Patterns Used
 - [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
@@ -63,6 +64,10 @@ home_screen_dark_mode.png  movie_details.png  upcoming_movies.png
 | App Drawer | Settings Screen | Home Screen (Dark Mode) |
 |:----------:|:---------------:|:-----------------------:|
 | ![App Drawer](screenshots/app_drawer.png) | ![Settings Screen](screenshots/settings_screen.png) | ![Home Screen (Dark Mode)](screenshots/home_screen_dark_mode.png) |
+<!-- responsive_tablet.png -->
+| Responsive Design (Tablet) |
+|:--------------------------:|
+| ![Responsive Design (Tablet)](screenshots/responsive_tablet.png) |
 
 
 ## TODO:
@@ -71,4 +76,4 @@ home_screen_dark_mode.png  movie_details.png  upcoming_movies.png
 - [ ] Switch from using the http package to the dio package for network requests
 - [ ] Localize the app in multiple languages
 - [ ] Switching between multiple themes
-- [ ] Responsive design for different screen sizes 
+- [x] Responsive design for different screen sizes 
