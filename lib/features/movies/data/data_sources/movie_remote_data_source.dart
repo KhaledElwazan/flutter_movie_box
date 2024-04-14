@@ -1,10 +1,9 @@
-import 'dart:convert';
-
+import 'package:dio/dio.dart';
+import 'package:flutter_movie_box/core/constants/base_urls.dart';
 import 'package:flutter_movie_box/core/error/exceptions.dart';
 import 'package:flutter_movie_box/features/movies/data/models/brief_movie_model/brief_movie_model.dart';
 import 'package:flutter_movie_box/features/movies/data/models/movie_model/movie_model.dart';
 import 'package:flutter_movie_box/features/movies/domain/usecases/get_movies.dart';
-import 'package:http/http.dart' as http;
 
 abstract class MovieRemoteDataSource {
   Future<List<BriefMovieModel>> getMovies(
@@ -13,27 +12,25 @@ abstract class MovieRemoteDataSource {
   Future<MovieModel> getMovieDetails(int movieId);
 }
 
-const String BASE_URL = 'https://api.themoviedb.org/3/movie';
-const String API_KEY = 'ab6da60052ca37ee47ea2b3ef44ce07d';
-
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-  final http.Client client;
+  final Dio dio;
 
-  MovieRemoteDataSourceImpl({required this.client});
+  MovieRemoteDataSourceImpl({required this.dio});
 
   @override
   Future<List<BriefMovieModel>> getMovies(
       {MovieCategory category = MovieCategory.popular}) async {
-    final response = await client.get(
-        Uri.parse(
-          '$BASE_URL/${enum2String(category)}?api_key=$API_KEY',
-        ),
+    final response = await dio.get(
+      '$BASE_URL/${enum2String(category)}?api_key=$API_KEY',
+      options: Options(
         headers: {
           'Content-Type': 'application/json',
-        });
+        },
+      ),
+    );
 
     if (response.statusCode == 200) {
-      final responseBody = jsonDecode(response.body) as Map<String, dynamic>;
+      final responseBody = response.data as Map<String, dynamic>;
 
       final List decodedJson = responseBody['results'] as List;
       final List<BriefMovieModel> movies =
@@ -59,15 +56,13 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<MovieModel> getMovieDetails(int movieId) async {
-    final response = await client.get(
-      Uri.parse('$BASE_URL/$movieId?api_key=$API_KEY'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    );
+    final response = await dio.get('$BASE_URL/$movieId?api_key=$API_KEY',
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+        }));
 
     if (response.statusCode == 200) {
-      final responseBody = jsonDecode(response.body) as Map<String, dynamic>;
+      final responseBody = response.data as Map<String, dynamic>;
       return MovieModel.fromJson(responseBody);
     } else {
       throw ServerException();
